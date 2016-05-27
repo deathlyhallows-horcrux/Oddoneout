@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	   <title>Matching Game</title>
+    <style> 
+    img{position:absolute; width:80px; height:80px;
+     
+    }
+    div{position:absolute;
+    width:500px;
+     height:500px;}
+     
+     #rightSide { left: 500px; 
+            border-left: 1px solid black }
+
+    h3{ color: blue; font-weight: bold; font-size: 40px; padding: none; text-align: center;
+    }
+
+    p{ text-align:center; font-style: oblique;
+
+    }
+
+    #the_body{
+      text-align: center;
+    }
+    
+    </style>
+    
+  
+    
+    
+    </head>
+	<body id ="the_body" onload="generateFaces()">
+      <h3>Odd one Out Game</h3>
+      <p>Click on the extra star face on the left</p>
+      <div id="leftSide"></div>
+      <div id="rightSide"></div>
+      
+       <script>
+    
+    
+     
+     
+    function generateFaces()
+    {
+      var numberOfFaces = 5;
+      var theLeftSide = document.getElementById("leftSide");
+    
+      for(i = 0; i < numberOfFaces; i++){
+      var smile = document.createElement("IMG");
+      smile.src = "st.gif";
+      var top_position = Math.floor(Math.random()*400);  
+      var left_position = Math.floor(Math.random()*400); 
+      smile.style.top = top_position + "px";
+      smile.style.left= left_position + "px";
+      
+      theLeftSide.appendChild(smile);
+      }
+      
+      
+     
+      var theRightSide =document.getElementById("rightSide");
+      var leftSideImages;
+      leftSideImages = theLeftSide.cloneNode(true);
+      leftSideImages.removeChild(leftSideImages.lastChild);
+      theRightSide.appendChild(leftSideImages);
+      
+      
+      theLeftSide.lastChild.onclick=function nextLevel(event){
+      event.stopPropagation();
+      //numberOfFaces += 5;
+      generateFaces();
+      }
+      
+      
+    var theBody = document.getElementById("the_body");  
+     
+    theBody.onclick = function gameOver() {
+    
+
+    alert("Game Over!");
+
+    theBody.onclick = null;
+
+    theLeftSide.lastChild.onclick = null;
+
+     }
+    } 
+    
+    </script>
+
+
+
+    
+	</body>
+	</html>
+
+
